@@ -1,3 +1,4 @@
+// Checks only letters (a-z,A-Z)
 class Solution3 {
 	
 	public static void main(String... args) {
@@ -12,13 +13,13 @@ class Solution3 {
 		for (int i = 0; i < input.length(); ++i) {
 			int character = input.charAt(i);
 			if ((bits & 1 << character) != 0) {
-				System.out.println("NOT all characters are unique");
+				System.out.println("NOT all letters are unique");
 				return;
 			}
 			bits = bits | 1 << character;
 		}
 		
-		System.out.println("All characters are unique");
+		System.out.println("All letters are unique");
 	}
 	
 }
