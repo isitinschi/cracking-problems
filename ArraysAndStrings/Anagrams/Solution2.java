@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 class Solution2 {
 	
 	public static void main(String... args) {
@@ -8,17 +10,17 @@ class Solution2 {
 		String input1 = args[0];
 		String input2 = args[1];
 		
+		int counter[] = new int[256];
 		if (input1.length() != input2.length()) {
 			System.out.println(false);
 		} else {
 			int n = input1.length();
-			for (int i = 0, j = n - 1; i < n && j >= 0; ++i, --j) {
-				if (input1.charAt(i) != input2.charAt(j)) {
-					System.out.println(false);
-					return;
-				}
+			for (int i = 0; i < n; ++i) {
+				++counter[input1.charAt(i)];
+				--counter[input2.charAt(i)];
 			}
-			System.out.println(true);
+			
+			System.out.println(Arrays.equals(counter, new int[256]));
 		}
 	}
 	

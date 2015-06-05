@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 class Solution1 {
 	
 	public static void main(String... args) {
@@ -10,13 +12,14 @@ class Solution1 {
 		
 		if (input1.length() != input2.length()) {
 			System.out.println(false);
-		} else {		
-			input2 = new StringBuilder(input2).reverse().toString();
-			if (input1.equals(input2)) {
-				System.out.println(true);
-			} else {
-				System.out.println(false);
-			}
+		} else {
+			char [] chars1 = new char[input1.length()];
+			char [] chars2 = new char[input2.length()];
+			input1.getChars(0, input1.length(), chars1, 0);
+			input1.getChars(0, input2.length(), chars2, 0);
+			Arrays.sort(chars1);
+			Arrays.sort(chars2);
+			System.out.println(Arrays.equals(chars1, chars2));
 		}
 	}
 	
