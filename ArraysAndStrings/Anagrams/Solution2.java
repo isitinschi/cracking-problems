@@ -1,6 +1,3 @@
-import java.util.Set;
-import java.util.HashSet;
-
 class Solution2 {
 	
 	public static void main(String... args) {
