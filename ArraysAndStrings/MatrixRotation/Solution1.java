@@ -6,39 +6,42 @@ class Solution1 {
 		int[][] matrix = readMatrixFromCommandLine();
 		
 		int N = matrix.length;
-		for (int layer = 0; layer < N; ++layer, --N) {
-			for (int i = layer; i < N - 1; ++i) {
-				// #1
-				int sourceRow = layer;
-				int sourceCol = i;
-				int destRow = sourceCol;
-				int destCol = matrix.length - sourceRow - 1;
-				int temp1 = matrix[destRow][destCol];
-				matrix[destRow][destCol] = matrix[sourceRow][sourceCol];
-				
-				// #2
-				sourceRow = destRow;
-				sourceCol = destCol;
-				destRow = sourceCol;
-				destCol = matrix.length - sourceRow - 1;
-				int temp2 = matrix[destRow][destCol];
-				matrix[destRow][destCol] = temp1;
-				
-				// #3
-				sourceRow = destRow;
-				sourceCol = destCol;
-				destRow = sourceCol;
-				destCol = matrix.length - sourceRow - 1;
-				temp1 = matrix[destRow][destCol];
-				matrix[destRow][destCol] = temp2;
-				
-				// #4
-				sourceRow = destRow;
-				sourceCol = destCol;
-				destRow = sourceCol;
-				destCol = matrix.length - sourceRow - 1;
-				temp2 = matrix[destRow][destCol];
-				matrix[destRow][destCol] = temp1;
+		
+		if (N > 1) {
+			for (int layer = 0; layer < N; ++layer, --N) {
+				for (int i = layer; i < N - 1; ++i) {
+					// #1
+					int sourceRow = layer;
+					int sourceCol = i;
+					int destRow = sourceCol;
+					int destCol = matrix.length - sourceRow - 1;
+					int temp1 = matrix[destRow][destCol];
+					matrix[destRow][destCol] = matrix[sourceRow][sourceCol];
+					
+					// #2
+					sourceRow = destRow;
+					sourceCol = destCol;
+					destRow = sourceCol;
+					destCol = matrix.length - sourceRow - 1;
+					int temp2 = matrix[destRow][destCol];
+					matrix[destRow][destCol] = temp1;
+					
+					// #3
+					sourceRow = destRow;
+					sourceCol = destCol;
+					destRow = sourceCol;
+					destCol = matrix.length - sourceRow - 1;
+					temp1 = matrix[destRow][destCol];
+					matrix[destRow][destCol] = temp2;
+					
+					// #4
+					sourceRow = destRow;
+					sourceCol = destCol;
+					destRow = sourceCol;
+					destCol = matrix.length - sourceRow - 1;
+					temp2 = matrix[destRow][destCol];
+					matrix[destRow][destCol] = temp1;
+				}
 			}
 		}
 		
@@ -51,6 +54,12 @@ class Solution1 {
 
 		System.out.print("N = ");
 		int N = s.nextInt();
+		
+		if (N < 1) {
+			System.out.println("You didn't provide correct matrix size");
+			System.exit(0);
+		}
+		
 		s.nextLine(); // throw away the newline.
 
 		int[][] numbers = new int[N][N];
