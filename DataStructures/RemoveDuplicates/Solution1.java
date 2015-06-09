@@ -3,70 +3,73 @@ import java.util.Scanner;
 class Solution1 {
 
 	public static void main(String... args) {
-		int[] array = readArrayFromCommandLine();
-		LinkedList list = new LinkedList();
-		for (int i = 0; i < array.length; ++i) {
-			list.add(array[i]);
-		}
-		
-		list.removeDuplicates();
-		
-		list.print();
+		Node head = readList();
+
+		removeDuplicates(head);
+
+		print(head);
 	}
 
-	private static class LinkedList {
-		
-		Node head = null;
-
-		public void removeDuplicates() {
-			if (head != null) {
-				Node node1 = head;
-				while (node1 != null) {
-					Node node2 = node1;
-					while (node2 != null && node2.next != null) {
-						if (node1.data == node2.next.data) {
-							node2.next = node2.next.next;
-						} else {
-							node2 = node2.next;
-						}
+	public static void removeDuplicates(Node head) {
+		if (head != null) {
+			Node node1 = head;
+			while (node1.next != null) {
+				node1 = node1.next;
+				Node node2 = node1;
+				while (node2 != null && node2.next != null) {
+					if (node1.data == node2.next.data) {
+						node2.next = node2.next.next;
+					} else {
+						node2 = node2.next;
 					}
-					node1 = node1.next;
 				}
 			}
 		}
-
-		public void add(int data) {
-			if (head == null) {
-				head = new Node(data);
-			} else {
-				Node node = head;
-				while (node.next != null) {
-					node = node.next;
-				}
-				node.next = new Node(data);
+	}
+	
+	public static void appendNode(Node head, int data) {
+		if (head == null) {
+			return;
+		} else {
+			Node node = head;
+			while (node.next != null) {
+				node = node.next;
 			}
+			node.next = new Node(data);
 		}
-		
-		public void print() {
-			if (head != null) {
-				Node node = head;
-				while (node != null) {
-					System.out.print(" " + node.data);
-					node = node.next;
-				}
-			} else {
-				System.out.println("List is empty");
+	}
+
+	public static void print(Node head) {
+		if (head != null) {
+			Node node = head;
+			while (node.next != null) {
+				System.out.print(" " + node.next.data);
+				node = node.next;
 			}
+		} else {
+			System.out.println("List is empty");
+		}
+	}
+
+	private static class Node {
+		int data;
+		Node next;
+
+		public Node() {
 		}
 
-		class Node {
-			int data;
-			Node next;
-
-			public Node(int data) {
-				this.data = data;
-			}
+		public Node(int data) {
+			this.data = data;
 		}
+	}
+	
+	private static Node readList() {
+		int[] array = readArrayFromCommandLine();
+		Node head = new Node();
+		for (int i = 0; i < array.length; ++i) {
+			appendNode(head, array[i]);
+		}
+		return head;
 	}
 
 	private static int[] readArrayFromCommandLine() {

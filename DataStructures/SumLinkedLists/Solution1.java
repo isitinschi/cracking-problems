@@ -3,43 +3,50 @@ import java.util.Scanner;
 class Solution1 {
 
 	public static void main(String... args) {
-		Node head = readList();
+		Node head1 = readList();
+		Node head2 = readList();
 
-		Scanner s = new Scanner(System.in);
-		System.out.print("N = ");
-		int n = s.nextInt();
-		if (n < 0) {
-			System.out.println("You didn't provide correct N");
-			System.exit(0);
-		}
+		Node sumHead = sum(head1, head2);
 
-		printNthToLastElement(head, n);
+		print(sumHead);
 	}
 
-	public static void printNthToLastElement(Node head, int n) {
-		if (head != null) {
-			Node nNode = head;
-			Node curNode = head;
-
-			int i = 0;
-			while (curNode.next != null && i < n) {
-				++i;
-				curNode = curNode.next;
-			}
-
-			if (i == n) {
-				while (curNode.next != null) {
-					curNode = curNode.next;
-					nNode = nNode.next;
+	public static Node sum(Node head1, Node head2) {
+		if (head1 != null && head2 != null) {
+			Node node1 = head1;
+			Node node2 = head2;
+			Node sumHead = new Node();
+			Node sumNode = sumHead;
+			int rest = 0;
+			while (node1.next != null || node2.next != null) {
+				int sum = rest;
+				if (node1.next != null) {
+					node1 = node1.next;
+					sum += node1.data;
 				}
-				System.out.println("Nth element to last is " + nNode.data);
-				return;
+				if (node2.next != null) {
+					node2 = node2.next;
+					sum += node2.data;
+				}
+				if (sum > 9) {
+					rest = sum / 10;
+					sum = sum  % 10;
+				} else {
+					rest = 0;
+				}
+				sumNode.next = new Node(sum);
+				sumNode = sumNode.next;
 			}
+			if (rest > 0) {
+				sumNode.next = new Node(rest);
+			}
+			
+			return sumHead;
 		}
-
-		System.out.println("List has less than " + (n + 1) + " elements");
+		
+		return null;
 	}
-
+	
 	public static void appendNode(Node head, int data) {
 		if (head == null) {
 			return;
@@ -52,12 +59,25 @@ class Solution1 {
 		}
 	}
 
+	public static void print(Node head) {
+		if (head != null) {
+			Node node = head;
+			while (node.next != null) {
+				System.out.print(" " + node.next.data);
+				node = node.next;
+			}
+		} else {
+			System.out.println("List is empty");
+		}
+	}
+
 	private static class Node {
 		int data;
 		Node next;
 
-		public Node() {}
-		
+		public Node() {
+		}
+
 		public Node(int data) {
 			this.data = data;
 		}
@@ -76,7 +96,7 @@ class Solution1 {
 
 		Scanner s = new Scanner(System.in);
 
-		System.out.print("Size = ");
+		System.out.print("N = ");
 		int N = s.nextInt();
 
 		if (N < 1) {
