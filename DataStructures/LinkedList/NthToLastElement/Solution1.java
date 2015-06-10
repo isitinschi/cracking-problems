@@ -16,7 +16,7 @@ class Solution1 {
 		printNthToLastElement(head, n);
 	}
 
-	public static void printNthToLastElement(Node head, int n) {
+	private static void printNthToLastElement(Node head, int n) {
 		if (head != null) {
 			Node nNode = head;
 			Node curNode = head;
@@ -40,7 +40,7 @@ class Solution1 {
 		System.out.println("List has less than " + (n + 1) + " elements");
 	}
 
-	public static void appendNode(Node head, int data) {
+	private static void appendNode(Node head, int data) {
 		if (head == null) {
 			return;
 		} else {
@@ -73,14 +73,13 @@ class Solution1 {
 	}
 
 	private static int[] readArrayFromCommandLine() {
-
 		Scanner s = new Scanner(System.in);
 
 		System.out.print("Size = ");
 		int N = s.nextInt();
 
 		if (N < 1) {
-			System.out.println("You didn't provide correct array size");
+			System.out.println("You didn't provide correct list size");
 			System.exit(0);
 		}
 

@@ -3,51 +3,31 @@ import java.util.Scanner;
 class Solution1 {
 
 	public static void main(String... args) {
-		Node head1 = readList();
-		Node head2 = readList();
+		Node head = readList();
 
-		Node sumHead = sum(head1, head2);
+		removeDuplicates(head);
 
-		print(sumHead);
+		print(head);
 	}
 
-	public static Node sum(Node head1, Node head2) {
-		if (head1 != null && head2 != null) {
-			Node node1 = head1;
-			Node node2 = head2;
-			Node sumHead = new Node();
-			Node sumNode = sumHead;
-			int rest = 0;
-			while (node1.next != null || node2.next != null) {
-				int sum = rest;
-				if (node1.next != null) {
-					node1 = node1.next;
-					sum += node1.data;
+	private static void removeDuplicates(Node head) {
+		if (head != null) {
+			Node node1 = head;
+			while (node1.next != null) {
+				node1 = node1.next;
+				Node node2 = node1;
+				while (node2 != null && node2.next != null) {
+					if (node1.data == node2.next.data) {
+						node2.next = node2.next.next;
+					} else {
+						node2 = node2.next;
+					}
 				}
-				if (node2.next != null) {
-					node2 = node2.next;
-					sum += node2.data;
-				}
-				if (sum > 9) {
-					rest = sum / 10;
-					sum = sum  % 10;
-				} else {
-					rest = 0;
-				}
-				sumNode.next = new Node(sum);
-				sumNode = sumNode.next;
 			}
-			if (rest > 0) {
-				sumNode.next = new Node(rest);
-			}
-			
-			return sumHead;
 		}
-		
-		return null;
 	}
 	
-	public static void appendNode(Node head, int data) {
+	private static void appendNode(Node head, int data) {
 		if (head == null) {
 			return;
 		} else {
@@ -59,7 +39,7 @@ class Solution1 {
 		}
 	}
 
-	public static void print(Node head) {
+	private static void print(Node head) {
 		if (head != null) {
 			Node node = head;
 			while (node.next != null) {
@@ -93,14 +73,13 @@ class Solution1 {
 	}
 
 	private static int[] readArrayFromCommandLine() {
-
 		Scanner s = new Scanner(System.in);
 
 		System.out.print("N = ");
 		int N = s.nextInt();
 
 		if (N < 1) {
-			System.out.println("You didn't provide correct array size");
+			System.out.println("You didn't provide correct list size");
 			System.exit(0);
 		}
 
