@@ -5,6 +5,7 @@ public class Node {
 
 	private int data;
 	private List<Node> nodes;
+	private State state;
 	
 	public Node(int data) {
 		this.data = data;
@@ -17,38 +18,39 @@ public class Node {
 		nodes.add(node);
 	}
 	
-	public boolean isBalanced() {
-		return maxDepth(0) - minDepth(0) <= 1;
+	public boolean isRouted() {
+		markNotVisited();
+		return searchRoute();
 	}
 	
-	private int maxDepth(int curDepth) {
-		if (nodes == null) {
-			return curDepth;
+	private void markNotVisited() {
+		if (state == null || state != State.NOT_VISITED) {
+			state = State.NOT_VISITED;
 		} else {
-			int maxDepth = Integer.MIN_VALUE;
 			for (Node node : nodes) {
-				int depth = node.maxDepth(curDepth + 1);
-				if (maxDepth < depth) {
-					maxDepth = depth;
-				}
+				node.markNotVisited();
 			}
-			return maxDepth;
 		}
 	}
 	
-	private int minDepth(int curDepth) {
-		if (nodes == null) {
-			return curDepth;
-		} else {
-			int minDepth = Integer.MAX_VALUE;
+	private boolean searchRoute() {
+		if (state == State.VISITED || state == State.VISITING) {
+			return true;
+		} else if (nodes != null) {
+			state = State.VISITING;
 			for (Node node : nodes) {
-				int depth = node.minDepth(curDepth + 1);
-				if (minDepth > depth) {
-					minDepth = depth;
+				if (node.searchRoute()) {
+					return true;
 				}
 			}
-			return minDepth;
+			state = State.VISITED;
 		}
+		
+		return false;
+	}
+	
+	private enum State {
+		VISITED, VISITING, NOT_VISITED;
 	}
 
 	public static void main(String... args) {
@@ -73,7 +75,7 @@ public class Node {
 		node12.append(node222);
 		node13.append(node231);
 		
-		System.out.println("Tree is" + (!root.isBalanced() ? " Not" : "") + " balanced");
+		System.out.println("Graph is" + (!root.isRouted() ? " Not" : "") + " routed");
 	}
 
 }
