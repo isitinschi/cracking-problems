@@ -50,7 +50,7 @@ class Solution {
 			}
 
 			System.out.println("Next smallest for " + value + "("
-					+ showBits(value) + ") is " + next + "(" + showBits(next)
+					+ getBits(value) + ") is " + next + "(" + getBits(next)
 					+ ")");
 		}
 	}
@@ -93,7 +93,7 @@ class Solution {
 			}
 
 			System.out.println("Next largest for " + value + "("
-					+ showBits(value) + ") is " + next + "(" + showBits(next)
+					+ getBits(value) + ") is " + next + "(" + getBits(next)
 					+ ")");
 		}
 	}
@@ -111,7 +111,7 @@ class Solution {
 		}
 	}
 
-	private static String showBits(int value) {
+	private static String getBits(int value) {
 		StringBuilder bits = new StringBuilder();
 		int mainPart = value;
 		while (mainPart > 0) {
