@@ -1,4 +1,4 @@
-import java.lang.StringBuffer;
+import java.lang.StringBuilder;
 
 public class Node {
 
@@ -44,26 +44,26 @@ public class Node {
 	}
 	
 	private static void findSums(Node root, int sum) {
-		findSums(root, sum, 0, new StringBuffer());
+		findSums(root, sum, 0, new StringBuilder());
 	}
 	
-	private static void findSums(Node node, int sum, int curSum, StringBuffer buffer) {
+	private static void findSums(Node node, int sum, int curSum, StringBuilder builder) {
 		if (node == null) {
 			return;
 		}
 		
 		curSum += node.data;
-		buffer.append(node.data).append(" ");
+		builder.append(node.data).append(" ");
 		
 		if (curSum == sum) {
-			System.out.println(buffer);
+			System.out.println(builder);
 		}		
 		 
-		findSums(node.left, sum, curSum, new StringBuffer(buffer));
-		findSums(node.right, sum, curSum, new StringBuffer(buffer));
+		findSums(node.left, sum, curSum, new StringBuilder(builder));
+		findSums(node.right, sum, curSum, new StringBuilder(builder));
 		
-		findSums(node.left, sum, 0, new StringBuffer());
-		findSums(node.right, sum, 0, new StringBuffer());
+		findSums(node.left, sum, 0, new StringBuilder());
+		findSums(node.right, sum, 0, new StringBuilder());
 	}
 
 }
