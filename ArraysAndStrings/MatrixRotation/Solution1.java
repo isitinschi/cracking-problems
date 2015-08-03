@@ -8,39 +8,15 @@ class Solution1 {
 		int N = matrix.length;
 		
 		if (N > 1) {
-			for (int layer = 0; layer < N; ++layer, --N) {
-				for (int i = layer; i < N - 1; ++i) {
-					// #1
-					int sourceRow = layer;
-					int sourceCol = i;
-					int destRow = sourceCol;
-					int destCol = matrix.length - sourceRow - 1;
-					int temp1 = matrix[destRow][destCol];
-					matrix[destRow][destCol] = matrix[sourceRow][sourceCol];
-					
-					// #2
-					sourceRow = destRow;
-					sourceCol = destCol;
-					destRow = sourceCol;
-					destCol = matrix.length - sourceRow - 1;
-					int temp2 = matrix[destRow][destCol];
-					matrix[destRow][destCol] = temp1;
-					
-					// #3
-					sourceRow = destRow;
-					sourceCol = destCol;
-					destRow = sourceCol;
-					destCol = matrix.length - sourceRow - 1;
-					temp1 = matrix[destRow][destCol];
-					matrix[destRow][destCol] = temp2;
-					
-					// #4
-					sourceRow = destRow;
-					sourceCol = destCol;
-					destRow = sourceCol;
-					destCol = matrix.length - sourceRow - 1;
-					temp2 = matrix[destRow][destCol];
-					matrix[destRow][destCol] = temp1;
+			for (int layer = 0; layer < N / 2; ++layer) {
+				int first = layer;
+				int last = N - layer - 1;
+				for (int i = layer; i < last; ++i) {
+					int top = matrix[first][i];
+					matrix[first][i] = matrix[N - i - 1][first];
+					matrix[N - i - 1][first] = matrix[last][N - i - 1];
+					matrix[last][N - i - 1] = matrix[i][last];
+					matrix[i][last] = top;					
 				}
 			}
 		}
