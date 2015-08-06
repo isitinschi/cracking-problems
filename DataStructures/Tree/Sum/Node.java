@@ -40,7 +40,7 @@ public class Node {
 		Node left321 = new Node(0);
 		left21.appendLeft(left321);
 		
-		findSums(root, 10);		
+		findSums(root, 10);
 	}
 	
 	private static void findSums(Node root, int sum) {
