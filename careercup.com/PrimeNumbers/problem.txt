@@ -1,0 +1,1 @@
+To find 5th prime number after 3. suppose input is 3, 5 output should be 17

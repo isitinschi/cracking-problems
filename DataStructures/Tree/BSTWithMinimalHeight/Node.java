@@ -10,11 +10,11 @@ public class Node {
 		this.data = data;
 	}
 
-	public void appendLeft(Node node) {
+	public void buildLeft(Node node) {
 		left = node;
 	}
 	
-	public void appendRight(Node node) {
+	public void buildRight(Node node) {
 		right = node;
 	}
 	
@@ -67,7 +67,7 @@ public class Node {
 			throw new IllegalArgumentException();
 		}
 		
-		Node root = append(array, 0, array.length);
+		Node root = build(array, 0, array.length);
 		
 		return root;
 	}
@@ -110,12 +110,12 @@ public class Node {
 		return true;
 	}
 	
-	private static Node append(int [] array, int start, int end) {
+	private static Node build(int [] array, int start, int end) {
 		if (end - start > 0) {
 			int mid = (start + end) / 2;
 			Node node = new Node(array[mid]);
-			node.left = append(array, start, mid);
-			node.right = append(array, mid + 1, end);
+			node.left = build(array, start, mid);
+			node.right = build(array, mid + 1, end);
 			return node;
 		} else {
 			return null;
