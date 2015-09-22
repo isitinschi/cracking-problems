@@ -1,0 +1,56 @@
+Suppose you are given a puzzle that is represented as a matrix with 0s and 1s, where a 0 indicates you’re allowed to move into that position and 1 means you’re not allowed to move in that position.
+Write a function that given a start position and an end position, returns a boolean value indicating if there exists a path from start to end.
+You are only allowed to move up, down, right or left. Diagonal movement is not allowed.
+ 
+Example #1
+ 
+Input
+0 0 1 0 1
+0 0 0 0 0
+0 1 1 1 1
+0 1 1 0 0
+ 
+start: 4,1
+end: 0,3
+ 
+Output
+true
+ 
+Example #2
+ 
+Input
+0 0 1 1 1
+0 1 0 0 0
+1 1 1 1 1
+0 0 0 0 1
+ 
+start: 0,0
+end: 1,2
+ 
+Output
+false
+ 
+Example #3
+ 
+Input
+0 0 1 1 1
+0 1 0 0 0
+0 1 1 1 1
+ 
+start: 0,0
+end: 2,1
+ 
+Output
+False
+
+class Position {
+  final int x, y;
+  public Position(final int x, final int y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+ 
+boolean pathExists(int[][] puzzle, Position start, Position end) {
+  // your code goes here
+}

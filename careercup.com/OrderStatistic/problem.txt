@@ -1,0 +1,13 @@
+Implement a function that returns the i-th most popular item sold at Amazon. You cannot rely on any libraries.
+ 
+class Item {
+    String itemId;
+    int quantitySold;
+}
+ 
+/**
+ * Find the ith most popular item in the list.
+ */
+String find(List&lt;Item&gt; items, int i) {
+    // your code goes here
+}

@@ -1,0 +1,1 @@
+Find all occurrences of substring in text; (KMP algorithm)

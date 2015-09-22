@@ -1,0 +1,22 @@
+1. Write a function that removes the duplicate of a collection of numbers and returns the number of elements remaining in the collection after the duplicates have been removed.
+You must ensure that duplicates are actually removed from the list.
+ 
+Example #1
+ 
+Input
+{1, 1, 5, 3, 8, 3, 7, 32, 32}
+ 
+Output
+6
+ 
+Example #2
+ 
+Input
+{21, 10, 24, 2, 21}
+ 
+Output
+4
+
+int removeDuplicates(List numbers) {
+    // your code goes here
+}
