@@ -8,27 +8,24 @@ public class Node {
 		data = value;
 	}
 	
-	private static boolean isBST(Node head) {
-		if (head == null) {
-			return false;
-		}
-		
-		return checkBST(head);	
-	}
-	
-	private static boolean checkBST(Node n) {
+	public boolean isBST() {
 		boolean valid = true;
 		
-		if (n.left != null) {
-			if (n.left.data <= n.data) {
-				valid = checkBST(n.left);
+		if (left != null) {
+			if (left.data <= data) {
+				valid = left.isBST();
 			} else {
 				return false;
 			}
 		}
-		if (n.right != null) {
-			if (n.right.data > n.data) {
-				valid = checkBST(n.right);
+		
+		if (!valid) {
+			return false;
+		}
+		
+		if (right != null) {
+			if (right.data > data) {
+				valid = right.isBST();
 			} else {
 				return false;
 			}
@@ -53,6 +50,6 @@ public class Node {
 		node2.left = node5;
 		node2.right = node6;
 		
-		System.out.println("Is BST? " + isBST(head));
+		System.out.println("Is BST? " + head.isBST());
 	}
 }

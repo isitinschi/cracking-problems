@@ -1,0 +1,13 @@
+Print first and last node of all the levels of a tree.
+Ex if tree is -
+
+root-&gt;data = 1
+root-&gt;left-&gt;data = 2
+root-&gt;right-&gt;data = 3
+root-&gt;left-&gt;right-&gt;data = 4
+root-&gt;right-&gt;right-&gt;data = 6
+root-&gt;right-&gt;left-&gt;data = 5
+root-&gt;right-&gt;left-&gt;left-&gt;data = 7
+root-&gt;right-&gt;left-&gt;left-&gt;right-&gt;data = 8
+
+Output - 1 2 3 4 6 7 8

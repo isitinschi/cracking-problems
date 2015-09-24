@@ -1,0 +1,3 @@
+return count of unique words without using split method.
+Input: string ="Swan swam over the sea swim Swan swim Swan"
+Output:4

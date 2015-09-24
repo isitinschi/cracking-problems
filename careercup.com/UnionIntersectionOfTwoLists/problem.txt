@@ -1,0 +1,7 @@
+This question was asked in the first coding round on-site.
+
+Give two sorted lists List&lt;Integer&gt; a and List&lt;Integer&gt; b.
+
+Find 
+the Union of these two lists - the union list should also be sorted
+the Intersection of these two lists - Intersection list should also be sorted.
