@@ -8,7 +8,6 @@ public class Solution {
 		char [] c = s.toCharArray();
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < c.length; ++i) {
-			char t = c[i];
 			int j = i + 1;
 			int count = 1;
 			while (j < c.length && c[j] == c[i]) {

@@ -3,9 +3,7 @@ public class HashMap<K, V> {
 	private Node<K, V> [] buckets;
 	
 	public HashMap(int capacity) {
-		@SuppressWarnings({"rawtypes","unchecked"})
-		Node<K,V>[] newBuckets = (Node<K,V>[]) new Node[capacity];
-		buckets = newBuckets;
+		buckets = (Node<K,V>[]) new Node[capacity];
 	}
 	
 	public void put(K key, V value) {

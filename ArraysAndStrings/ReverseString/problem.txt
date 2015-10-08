@@ -1,1 +1,1 @@
-Implement a function which reverses a nullterminated string.
+Implement a function which reverses a string.
