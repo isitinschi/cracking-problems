@@ -11,7 +11,6 @@ import java.util.LinkedList;
  *     TreeNode(int x) { val = x; }
  * }
  */
-
 public class Solution {
 
     public List<Integer> inorderTraversal(TreeNode root) {
@@ -21,30 +20,16 @@ public class Solution {
 
         Stack<TreeNode> stack = new Stack<>();
         List<Integer> list = new LinkedList<>();
-        stack.push(root);
-        TreeNode n = root;
-        while (!stack.isEmpty()) {
-            if (n == null) {
-                n = stack.pop();
-            }
+        TreeNode node = root;        
 
-            while (n.left != null) {
-                stack.push(n.left);
-                n = n.left;
-            }
-
-            if (!stack.isEmpty()) {
-                n = stack.pop();
-                list.add(n.val);
-                while (n.right == null && !stack.isEmpty()) {
-                    n = stack.pop();
-                    list.add(n.val);
-                }
-
-                if (n.right != null) {
-                    n = n.right;
-                    stack.push(n);
-                }    
+        while (!stack.isEmpty() || node != null) {
+            if (node != null) {
+                stack.push(node);
+                node = node.left;
+            } else {
+                node = stack.pop();
+                list.add(node.val);
+                node = node.right;
             }
         }        
 
