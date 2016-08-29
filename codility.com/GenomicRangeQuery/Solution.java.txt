@@ -1,0 +1,104 @@
+import java.util.List;
+import java.util.ArrayList;
+
+class Solution {    
+    private List<int []> counts = null;
+        
+    public int[] solution(String S, int[] P, int[] Q) {
+        int size = P.length;
+        int [] result = new int[size];
+        
+        build(S);
+        
+        for (int i = 0; i < size; ++i) {
+            int start = P[i];
+            int end = Q[i];
+            if (start == end) {
+                result[i] = switchChar(S.charAt(start));
+            } else {
+                result[i] = query(P[i], Q[i]);
+            }
+        }
+        
+        return result;
+    }
+    
+    private void build(String s) {
+        counts = new ArrayList<>();
+        char [] array = s.toCharArray();
+        int a = 0;
+        int c = 0;
+        int g = 0;
+        int t = 0;
+        for (int i = 0; i < array.length; ++i) {
+            if (array[i] == 'A') {
+                ++a;
+            }
+            if (array[i] == 'C') {
+                ++c;
+            }
+            if (array[i] == 'G') {
+                ++g;
+            }
+            if (array[i] == 'T') {
+                ++t;
+            }
+            counts.add(new int [] {a, c, g, t});
+        }
+    }
+    
+    private int switchChar(char c) {
+        switch(c) {
+            default: throw new IllegalArgumentException("Wrong DNA sequence");
+            case 'A': return 1;
+            case 'C': return 2;
+            case 'G': return 3;
+            case 'T': return 4;
+        }
+    }
+    
+    private int query(int start, int end) {
+        if (start == end) {
+            if (counts.get(start)[0] != 0) {
+                return 1;
+            }
+            if (counts.get(start)[1] != 0) {
+                return 2;
+            }
+            if (counts.get(start)[2] != 0) {
+                return 3;
+            }
+            if (counts.get(start)[3] != 0) {
+                return 4;
+            }
+        } else if (start == 0) {
+            if (counts.get(end)[0] != 0) {
+                return 1;
+            }
+            if (counts.get(end)[1] != 0) {
+                return 2;
+            }
+            if (counts.get(end)[2] != 0) {
+                return 3;
+            }
+            if (counts.get(end)[3] != 0) {
+                return 4;
+            }
+        } else {
+            if (counts.get(end)[0] > counts.get(start - 1)[0]) {
+                return 1;
+            }
+            if (counts.get(end)[1] > counts.get(start - 1)[1]) {
+                return 2;
+            }
+            if (counts.get(end)[2] > counts.get(start - 1)[2]) {
+                return 3;
+            }
+            if (counts.get(end)[3] > counts.get(start - 1)[3]) {
+                return 4;
+            }
+        }
+        
+        throw new IllegalArgumentException("Wrong DNA sequence");
+    }
+}
